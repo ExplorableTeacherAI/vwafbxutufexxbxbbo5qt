@@ -1,0 +1,67 @@
+{
+  "section_id": "inner-product-as-geometry",
+  "title": "Inner Product as Geometry",
+  "assertions": [
+    {
+      "type": "initial-state",
+      "description": "Initial state poses the problem: two vectors shown with angle arc, magnitudes, and computed inner product visible",
+      "expect": {
+        "elements_visible": ["angle_arc", "vector_u", "vector_v", "angle_handle", "magnitude_handles"],
+        "inner_product_displayed": true,
+        "angle_value": 45,
+        "norm_u_value": 3.0,
+        "norm_v_value": 2.5
+      }
+    },
+    {
+      "type": "interaction",
+      "action": "drag_angle_handle",
+      "description": "Dragging the teal angle handle changes the angle between vectors",
+      "setup": { "angle": 45 },
+      "gesture": { "type": "drag", "target": "angle_handle", "delta": { "angle": 45 } },
+      "expect": {
+        "angle_updated": true,
+        "inner_product_recalculated": true,
+        "vectors_redrawn": true
+      }
+    },
+    {
+      "type": "interaction",
+      "action": "drag_magnitude_u",
+      "description": "Dragging the purple magnitude handle for u changes vector u's length",
+      "setup": { "norm_u": 3.0 },
+      "gesture": { "type": "drag", "target": "magnitude_handle_u", "delta": { "x": 40 } },
+      "expect": {
+        "norm_u_updated": true,
+        "inner_product_recalculated": true,
+        "vector_u_redrawn": true
+      }
+    },
+    {
+      "type": "interaction",
+      "action": "drag_magnitude_v",
+      "description": "Dragging the purple magnitude handle for v changes vector v's length",
+      "setup": { "norm_v": 2.5 },
+      "gesture": { "type": "drag", "target": "magnitude_handle_v", "delta": { "radial": 20 } },
+      "expect": {
+        "norm_v_updated": true,
+        "inner_product_recalculated": true,
+        "vector_v_redrawn": true
+      }
+    },
+    {
+      "type": "causal_chain",
+      "description": "The formula ⟨u,v⟩ = ‖u‖‖v‖cos(θ) is demonstrated: changing any factor updates the result",
+      "expect": {
+        "formula_visible": true,
+        "all_factors_labeled": ["angle", "norm_u", "norm_v"],
+        "result_updates_on_any_change": true
+      }
+    },
+    {
+      "type": "aha_moment",
+      "description": "Student discovers that angle and lengths completely determine the inner product — no algebraic freedom remains",
+      "verification": "Setting angle to 90° makes inner product zero regardless of magnitudes"
+    }
+  ]
+}

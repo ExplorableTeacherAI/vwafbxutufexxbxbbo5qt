@@ -78,83 +78,170 @@ export interface VariableDefinition {
  */
 export const variableDefinitions: Record<string, VariableDefinition> = {
     // ========================================
-    // ADD YOUR VARIABLES HERE
+    // HILBERT SPACE LESSON VARIABLES
     // ========================================
 
-    // Uncomment and modify these examples for your lesson:
-
-    /*
     // ─────────────────────────────────────────
-    // NUMBER - Use with sliders
+    // Section 1: Inner Product as Geometry
     // ─────────────────────────────────────────
-    myValue: {
-        defaultValue: 5,
+    innerProductAngle: {
+        defaultValue: 45,
         type: 'number',
-        label: 'My Value',
-        description: 'A number that controls something',
-        unit: 'm',           // optional unit display
+        label: 'Angle θ',
+        description: 'Angle between two vectors in degrees',
+        unit: '°',
+        min: 5,
+        max: 175,
+        step: 1,
+        color: '#0d9488',
+    },
+    vectorNormU: {
+        defaultValue: 3.0,
+        type: 'number',
+        label: 'Norm of u',
+        description: 'Length of vector u',
+        min: 0.5,
+        max: 5,
+        step: 0.1,
+        color: '#7c3aed',
+    },
+    vectorNormV: {
+        defaultValue: 2.5,
+        type: 'number',
+        label: 'Norm of v',
+        description: 'Length of vector v',
+        min: 0.5,
+        max: 5,
+        step: 0.1,
+        color: '#7c3aed',
+    },
+    innerProductValue: {
+        defaultValue: 5.30,
+        type: 'number',
+        label: 'Inner Product',
+        description: 'Computed inner product value',
+        color: '#0d9488',
+    },
+    innerProductAnswer: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Inner Product Question Answer',
+        description: 'Student answer for the inner product question',
+        placeholder: '???',
+        correctAnswer: '6',
+        color: '#0d9488',
+    },
+
+    // ─────────────────────────────────────────
+    // Section 2: Projection onto a Subspace
+    // ─────────────────────────────────────────
+    projectionT: {
+        defaultValue: 0.5,
+        type: 'number',
+        label: 'Projection parameter',
+        description: 'Parameter controlling projection point along subspace',
+        min: 0,
+        max: 1,
+        step: 0.01,
+        color: '#0d9488',
+    },
+    residualLength: {
+        defaultValue: 95.3,
+        type: 'number',
+        label: 'Residual Length',
+        description: 'Length of the residual vector',
+        color: '#dc2626',
+    },
+    residualAngle: {
+        defaultValue: 90,
+        type: 'number',
+        label: 'Residual Angle',
+        description: 'Angle of residual to subspace',
+        unit: '°',
+        color: '#0d9488',
+    },
+    projectionAnswer: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Projection Question Answer',
+        description: 'Student answer for the projection question',
+        placeholder: '???',
+        correctAnswer: 'longer',
+        options: ['shorter', 'longer', 'same'],
+        color: '#0d9488',
+    },
+
+    // ─────────────────────────────────────────
+    // Section 3: From Finite to Infinite Dimensions
+    // ─────────────────────────────────────────
+    basisTermCount: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'Number of basis terms',
+        description: 'How many basis functions are included in the partial sum',
+        min: 1,
+        max: 20,
+        step: 1,
+        color: '#7c3aed',
+    },
+    approximationError: {
+        defaultValue: 1.0,
+        type: 'number',
+        label: 'Approximation Error',
+        description: 'Distance from partial sum to target',
+        color: '#f59e0b',
+    },
+    infiniteDimensionsAnswer: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Infinite Dimensions Question Answer',
+        description: 'Student answer for the infinite dimensions question',
+        placeholder: '???',
+        correctAnswer: 'add',
+        options: ['stop', 'add', 'resize'],
+        color: '#7c3aed',
+    },
+
+    // ─────────────────────────────────────────
+    // Section 4: Why Completeness Matters
+    // ─────────────────────────────────────────
+    cauchySequenceStep: {
+        defaultValue: 0,
+        type: 'number',
+        label: 'Cauchy Sequence Step',
+        description: 'Current step in the Cauchy sequence animation',
         min: 0,
         max: 10,
-        step: 0.5,
+        step: 1,
+        color: '#3b82f6',
     },
-
-    // ─────────────────────────────────────────
-    // TEXT - Free text input
-    // ─────────────────────────────────────────
-    lessonTitle: {
-        defaultValue: 'My Lesson',
-        type: 'text',
-        label: 'Lesson Title',
-        description: 'The title of your lesson',
-        placeholder: 'Enter a title...',
+    distanceToTarget: {
+        defaultValue: 0.414,
+        type: 'number',
+        label: 'Distance to Target',
+        description: 'Distance from current sequence point to limit',
+        color: '#f59e0b',
     },
-
-    // ─────────────────────────────────────────
-    // SELECT - Dropdown with options
-    // ─────────────────────────────────────────
-    difficulty: {
-        defaultValue: 'medium',
+    completenessAnswer: {
+        defaultValue: '',
         type: 'select',
-        label: 'Difficulty',
-        description: 'The difficulty level of the lesson',
-        options: ['easy', 'medium', 'hard', 'expert'],
+        label: 'Completeness Question Answer',
+        description: 'Student answer for the completeness question',
+        placeholder: '???',
+        correctAnswer: 'incomplete',
+        options: ['complete', 'incomplete', 'neither'],
+        color: '#0d9488',
     },
 
-    // ─────────────────────────────────────────
-    // BOOLEAN - Toggle switch
-    // ─────────────────────────────────────────
-    showHints: {
-        defaultValue: true,
-        type: 'boolean',
-        label: 'Show Hints',
-        description: 'Toggle to show or hide hints',
+    // Highlight variables for linked highlighting
+    activeHighlight: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Active Highlight',
+        description: 'Currently highlighted element ID',
+        color: '#62D0AD',
+        bgColor: 'rgba(98, 208, 173, 0.15)',
     },
-
-    // ─────────────────────────────────────────
-    // ARRAY - List of numbers
-    // ─────────────────────────────────────────
-    dataPoints: {
-        defaultValue: [1, 4, 9, 16, 25],
-        type: 'array',
-        label: 'Data Points',
-        description: 'Y-values for plotting a graph',
-    },
-
-    // ─────────────────────────────────────────
-    // OBJECT - Complex structured data
-    // ─────────────────────────────────────────
-    graphSettings: {
-        defaultValue: { 
-            xMin: -10, 
-            xMax: 10, 
-            showGrid: true 
-        },
-        type: 'object',
-        label: 'Graph Settings',
-        description: 'Configuration for the graph display',
-        schema: '{ xMin: number, xMax: number, showGrid: boolean }',
-    },
-    */
 };
 
 /**

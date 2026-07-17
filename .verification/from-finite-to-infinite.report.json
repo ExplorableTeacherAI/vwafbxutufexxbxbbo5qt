@@ -1,0 +1,6 @@
+{
+  "section_id": "from-finite-to-infinite",
+  "project_id": "vwafbxutufexxbxbbo5qt",
+  "passed": false,
+  "error": "'str' object has no attribute 'get'"
+}

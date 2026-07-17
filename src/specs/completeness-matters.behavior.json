@@ -1,0 +1,67 @@
+{
+  "section_id": "completeness-matters",
+  "title": "Why Completeness Matters",
+  "assertions": [
+    {
+      "type": "initial-state",
+      "description": "Initial state shows two empty grids side-by-side (Q² and R²) with target zone at (√2, √2) marked — the problem is posed: what happens to a Cauchy sequence in different spaces?",
+      "expect": {
+        "left_panel_visible": true,
+        "right_panel_visible": true,
+        "left_panel_label": "Q²",
+        "right_panel_label": "R²",
+        "target_zone_visible_both_panels": true,
+        "left_target_dashed": true,
+        "right_target_solid": true,
+        "initial_sequence_empty": true,
+        "add_point_button_visible": true
+      }
+    },
+    {
+      "type": "interaction",
+      "action": "click_add_point",
+      "description": "Clicking 'Add Next Point' adds the next rational approximation to √2",
+      "setup": { "sequence_length": 0 },
+      "gesture": { "type": "click", "target": "add_point_button" },
+      "expect": {
+        "point_added_to_both_grids": true,
+        "sequence_length_increases": true,
+        "distance_to_target_decreases": true
+      }
+    },
+    {
+      "type": "interaction",
+      "action": "click_reset",
+      "description": "Clicking 'Reset' clears the sequence",
+      "setup": { "sequence_length": 5 },
+      "gesture": { "type": "click", "target": "reset_button" },
+      "expect": {
+        "sequence_cleared": true,
+        "both_grids_reset": true
+      }
+    },
+    {
+      "type": "comparison",
+      "description": "Both grids show the SAME sequence, but with different outcomes: Q² shows 'Limit not in Q²!' while R² shows 'Converges to (√2, √2) ✓'",
+      "expect": {
+        "same_points_in_both_grids": true,
+        "left_status_shows_failure_after_3_points": true,
+        "right_status_shows_success_after_3_points": true
+      }
+    },
+    {
+      "type": "causal_chain",
+      "description": "The sequence gets arbitrarily close to (√2, √2) but that point only exists in R², not Q²",
+      "expect": {
+        "distance_to_target_displayed": true,
+        "distance_decreases_with_each_point": true,
+        "limit_point_visible_only_in_right_panel": true
+      }
+    },
+    {
+      "type": "aha_moment",
+      "description": "Student discovers that the SAME Cauchy sequence has completely different fates depending on the ambient space — completeness is about whether limits exist, not about sequence behavior",
+      "verification": "After adding 5+ points, left panel shows red 'Limit not in Q²!' while right panel shows green 'Converges' message"
+    }
+  ]
+}

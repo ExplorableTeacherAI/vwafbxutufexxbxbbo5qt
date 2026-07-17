@@ -1,0 +1,56 @@
+{
+  "section_id": "from-finite-to-infinite",
+  "title": "From Finite to Infinite Dimensions",
+  "assertions": [
+    {
+      "type": "initial-state",
+      "description": "Initial state shows a target function (square wave) with n=1 Fourier term approximation — the approximation is visibly poor, posing the problem",
+      "expect": {
+        "target_function_visible": true,
+        "approximation_curve_visible": true,
+        "initial_term_count": 1,
+        "visible_gap_between_target_and_approximation": true,
+        "slider_handle_visible": true,
+        "error_value_displayed": true
+      }
+    },
+    {
+      "type": "interaction",
+      "action": "drag_slider_right",
+      "description": "Dragging the purple slider point right adds more Fourier basis terms",
+      "setup": { "term_count": 1 },
+      "gesture": { "type": "drag", "target": "slider_handle", "direction": "right" },
+      "expect": {
+        "term_count_increases": true,
+        "approximation_improves": true,
+        "error_decreases": true
+      }
+    },
+    {
+      "type": "interaction",
+      "action": "drag_slider_left",
+      "description": "Dragging the purple slider point left removes Fourier basis terms",
+      "setup": { "term_count": 10 },
+      "gesture": { "type": "drag", "target": "slider_handle", "direction": "left" },
+      "expect": {
+        "term_count_decreases": true,
+        "approximation_worsens": true,
+        "error_increases": true
+      }
+    },
+    {
+      "type": "causal_chain",
+      "description": "More basis terms → better approximation → lower error, demonstrating how infinite dimensions allow arbitrarily close approximation",
+      "expect": {
+        "term_count_displayed": true,
+        "error_value_displayed": true,
+        "monotonic_improvement_with_more_terms": true
+      }
+    },
+    {
+      "type": "aha_moment",
+      "description": "Student sees that adding more orthogonal basis functions continues to improve the fit indefinitely — infinite dimensions means no cap on approximation quality",
+      "verification": "With n=15+ terms, the purple curve closely matches the orange square wave target"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "section_id": "projection-onto-subspace",
+  "title": "Projection onto a Subspace",
+  "assertions": [
+    {
+      "type": "initial-state",
+      "description": "Initial state shows two panels: left with true orthogonal projection (locked), right with adjustable decomposition at the optimal position",
+      "expect": {
+        "left_panel_visible": true,
+        "right_panel_visible": true,
+        "subspace_line_visible": true,
+        "original_vector_visible": true,
+        "projection_vector_visible": true,
+        "residual_visible": true,
+        "both_residuals_equal_length_initially": true
+      }
+    },
+    {
+      "type": "interaction",
+      "action": "drag_projection_point",
+      "description": "Dragging the teal point along the subspace changes the decomposition",
+      "setup": { "projection_at_optimal": true },
+      "gesture": { "type": "drag", "target": "projection_handle", "direction": "along_subspace" },
+      "expect": {
+        "projection_point_moves_along_subspace": true,
+        "residual_redrawn": true,
+        "residual_length_increases": true
+      }
+    },
+    {
+      "type": "comparison",
+      "description": "Left panel always shows minimum residual length; right panel shows current (potentially longer) residual",
+      "expect": {
+        "left_residual_always_minimum": true,
+        "right_residual_length_displayed": true,
+        "comparison_enables_insight": true
+      }
+    },
+    {
+      "type": "causal_chain",
+      "description": "Moving away from perpendicular increases residual length",
+      "expect": {
+        "residual_length_shown": true,
+        "perpendicular_position_has_minimum_length": true
+      }
+    },
+    {
+      "type": "aha_moment",
+      "description": "Student discovers that only the perpendicular decomposition minimizes residual length — perpendicularity is what makes projection optimal",
+      "verification": "Any deviation from perpendicular increases the residual length shown in the right panel"
+    }
+  ]
+}
